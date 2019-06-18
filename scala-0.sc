@@ -1,99 +1,63 @@
-val nombre: String = "Maria"
-val mensaje: String = s"Holis $nombre"
-println(s"$mensaje jodete, con cariño")
-
-//inferencia de tipo
-val apellido = "Lopez"
-
-val nombreCompleto = s"${nombre} ${apellido}"
-println(nombreCompleto)
-
-var edad: Int = 12
-edad = 23
-
-val estadoCivil: Boolean = false
-
-if (estadoCivil){
-  println(s"$nombre :)")
-}else{
-  println(s"$apellido :(")
+//Pure function
+def sumar(x: Int, y: Int):Int = {
+  x + y //the last line on a code block is always return
 }
 
-def saludar(nombre: String = "Laura"): Unit ={
-  println(s"Holis $nombre")
+//Funcion anonima
+val suma = (x:Int,y:Int) => {x+y}
+println(suma(2,2))
+
+//objetos
+case class Persona(nombre:String, edad:Int)
+//case class avoids using "new" keyword
+
+val juan = Persona("Maria",20)
+val janHappyBirthday = juan.copy(edad = juan.edad + 1) //avoids mutability of juan.edad
+
+class Alumno(nombre:String, edad:Int) extends Persona(nombre,edad){}
+
+//abstract class
+abstract class Animal {
+  def comer()
 }
 
-def saludar(): Unit ={
-  println(s"Holis Gerardo")
+class Carnivoro extends Animal {
+  override def comer(): Unit = {}
 }
 
-def saludar(casado: Boolean): Unit ={
-  println(s"Holis Gerardo")
+class Herviboro extends Animal {
+  override def comer(): Unit = {}
 }
 
-/*
-val  getEdad = match nombre {
-    case "Juan" => 45
-    case "Maria" => 34
-    case "Luis" => 12
-    case _ => 50
+val animales:List[Animal] = List(new Carnivoro)
+
+for(animal <- animales){
+  animal.comer()
+}
+
+animales.foreach(animal => animal.comer())
+
+//objects
+object Proceso {
+  def monitorizar(): Boolean={
+    true
   }
-*/
-
-println({
-  val a = 1
-  a
-})
-
-//Expresiones
-val data = {
-  val x = 90
-  x
 }
 
-println(data)
-
-
-//colecciones
-val lista:Array[Int] = Array(1,2,3,4,5)
-
-
-//recorridos
-for(numero <- lista){
-  println(numero)
+def comprobacionesSistemas= {
+  val resultado = Proceso.monitorizar() //object function can be called w/o instantiating the object
 }
 
-val nombres: List[String] = List("Juan", "Maria", "Alberto", "Jaime")
+//interfaces
+trait Printer{
+  def imprimir()
+}
+
+//"extends" keyword is also used for interfaces
+class Document extends Printer{
+  override def imprimir(): Unit = {}
+}
 
 
-def filtrarPorLetraJ(nombre:String):Boolean=nombre.startsWith("J")
-
-//def convertirMinuscula(nombre:String):String=nombre.toLowerCase
-val convertirMinuscula = (item:String) => item.toLowerCase
-
-
-val nombreporj=nombres.filter(filtrarPorLetraJ)
-nombreporj.foreach(println)
-
-val nombresPorJAMinuscula = nombres
-  .filter(filtrarPorLetraJ)
-  //.map(convertirMinuscula)
-    .map(_.toLowerCase)
-
-nombresPorJAMinuscula.foreach(println)
-
-
-//lista de elementos retornar los elementos impares multiplicados por 2
-
-val numbers: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
-
-val isOdd = (num:Int)=> num % 2 != 0
-
-
-val oddNumsx2 = numbers
-  .filter(isOdd)
-    .map((item:Int) => item * 2)
-
-oddNumsx2.foreach(println)
 
 
