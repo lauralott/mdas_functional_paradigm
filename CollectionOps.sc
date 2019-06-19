@@ -26,3 +26,20 @@ val menores20menos5 = numerosMenores20.map(n => n-5)
                   .head
 
 println(primero)
+
+//reduce o fold
+val sumatorio = numeros.reduce((x,y) => x + y)
+println(s"Resultado de la suma con reduce: $sumatorio")
+//fold let u add an offset
+val sumatorioOffset20 = numeros.fold(20)((x:Int,y:Int) => x + y)
+println(s"Resultado de la suma con fold: $sumatorioOffset20")
+
+//literal function
+def procesar = (a:Int,b:Int) => a + b
+//currying
+def procesar21(a:Int) = (b:Int) => (a+1) + b
+
+//intermediate
+val procesarPartially = procesar21(2)
+println(procesarPartially(3))
+

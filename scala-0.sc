@@ -58,6 +58,13 @@ class Document extends Printer{
   override def imprimir(): Unit = {}
 }
 
+//literal function
+def procesar = (a:Int,b:Int) => a + b
+//currying
+def procesar21(a:Int) = (b:Int) => (a+1) + b
 
+//intermediate
+val procesarPartially = procesar21(2)
+println(procesarPartially(3))
 
 
